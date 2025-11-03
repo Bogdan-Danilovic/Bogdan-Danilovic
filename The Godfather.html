@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gledanje Filma - Naslov Filma</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Osnovni stilovi za stranicu */
+        body {
+            /* Oslanjamo se na 'style.css' za tamnu pozadinu, ali postavljamo centriranje */
+            text-align: center;
+        }
+        .page-content { 
+            max-width: 900px; 
+            margin: 50px auto; 
+            padding: 20px;
+        }
+        
+        /* === STIL ZA VIDEO PLEJER (16:9) === */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden;
+            background: #000;
+            border-radius: 8px; 
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* === NOVI STILOVI ZA DUGMAD SERVERA === */
+        .server-selection { 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        .server-btn { 
+            padding: 12px 25px; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            color: #ffffff; 
+            background-color: #2a2a2a; 
+            border: 2px solid #444; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+        .server-btn:hover { 
+            background-color: #383838; 
+            border-color: #666; 
+        }
+        .server-btn.active { 
+            background-color: #0b4e8e; 
+            border-color: #1a6fcc; 
+            color: #fff; 
+            box-shadow: 0 0 15px rgba(11, 78, 142, 0.6); 
+            transform: scale(1.05); 
+        }
+        
+        /* === NOVI STILOVI ZA ŽANR TAGOVE (Sada su linkovi) === */
+        .genre-tags {
+            margin-top: 25px;
+            margin-bottom: 30px; 
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        /* Tag-btn sada stilizuje 'a' tag (link) */
+        .tag-btn {
+            display: inline-block;
+            padding: 6px 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 20px;
+            text-decoration: none; /* Uklanja podvlačenje */
+            transition: all 0.2s ease;
+            cursor: pointer; /* Jasno označava da je klikabilno */
+        }
+        .tag-btn:hover {
+            background-color: #383838;
+            border-color: #666;
+            color: #fff;
+        }
+        /* ==================================== */
+
+        /* === OSTALI DETALJI === */
+        .movie-overview { 
+            text-align: left; 
+            font-size: 1.1em; 
+            margin-top: 30px; 
+            color: #ccc; 
+            line-height: 1.6; 
+        }
+        .movie-overview strong { 
+            color: #fff; 
+            font-weight: 600; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-content">
+        <a href="index.html" class="play-button" style="display: block; width: 200px; margin: 0 auto 30px auto; background-color: #0b4e8e;">Home</a>
+        
+        <h2>The Godfather (1972)</h2>
+        
+        <div class="video-container">
+            
+        <iframe id="movie-player" src="https://vidrock.net/mega/movie/238" 
+        webkitAllowFullScreen 
+        mozallowfullscreen 
+        allowfullscreen 
+        frameborder="0" 
+        scrolling="no">
+        </iframe>
+        
+        </div>
+
+        <div class="server-selection">
+            <button class="server-btn active" data-src="https://vidrock.net/mega/movie/238">VidRock</button>
+            <button class="server-btn" data-src="https://vidsrc-embed.ru/embed/movie/238">VidSrc</button>
+        </div>
+
+        <div class="genre-tags">
+            <a href="index.html?genre=biografy" class="tag-btn">Biografski</a>
+            <a href="index.html?genre=drama" class="tag-btn">Drama</a>
+        </div>
+        <div class="movie-overview">
+            <p>
+                <strong>Overview:</strong> A dramatization of the life story of 
+                J. Robert Oppenheimer, the physicist who had a large hand in the
+                 development of the atomic bombs that brought an end to World War II.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pronađi plejer i svu dugmad
+            const player = document.getElementById('movie-player');
+            const serverButtons = document.querySelectorAll('.server-btn');
+
+            // Dodaj 'click' event na svako dugme
+            serverButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    
+                    // Ako je dugme već aktivno, ne radi ništa
+                    if (this.classList.contains('active')) {
+                        return; 
+                    }
+
+                    // 1. Ukloni 'active' klasu sa sve dugmadi
+                    serverButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // 2. Dodaj 'active' klasu na kliknuto dugme
+                    this.classList.add('active');
+                    
+                    // 3. Uzmi novi URL iz 'data-src' atributa
+                    const newSrc = this.getAttribute('data-src');
+                    
+                    // 4. Promeni 'src' u iframe playeru (ovo menja video)
+                    if (player) {
+                        player.src = newSrc;
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

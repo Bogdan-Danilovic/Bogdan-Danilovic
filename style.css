@@ -1,0 +1,252 @@
+/* =========================================
+   1. GLOBALNI STILOVI
+   ========================================= */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1d1d1d; 
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================
+   2. HEADER & PRETRAGA
+   ========================================= */
+.search-container {
+    background-color: #333;
+    padding: 20px;
+    padding-left: 80px; /* Mesto za hamburger meni */
+    margin-bottom: 30px;
+    border-radius: 0 0 8px 8px; 
+    text-align: center;
+    position: relative; 
+}
+.search-container h1 { 
+    margin-top: 0; 
+}
+.search-container input { 
+    padding: 10px; 
+    width: 60%; 
+}
+.search-container button { 
+    padding: 10px 20px; 
+    background-color: #0b4e8e; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 4px;
+} 
+
+/* =========================================
+   3. GLAVNA STRANA: GRID I KARTICE
+   ========================================= */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 20px;
+    padding: 0 20px 20px 20px;
+}
+
+.movie-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+}
+.movie-card:hover { 
+    transform: scale(1.03); 
+}
+.movie-card img {
+    width: 100%;
+    height: 100%; 
+    display: block;
+}
+
+/* Sakriva filtrirane kartice (koristi JS) */
+.movie-card.hidden {
+    display: none;
+}
+
+/* OVERLAY - Hover efekat */
+.movie-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.5));
+    padding: 15px;
+    opacity: 0;
+    transform: translateY(100%); 
+    transition: all 0.3s ease-in-out;
+}
+.movie-card:hover .movie-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.description {
+    font-size: 0.85em;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+
+.play-button {
+    display: block;
+    background-color: #0b4e8e; /* Plava boja */
+    color: white; 
+    text-align: center;
+    text-decoration: none; 
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.play-button:hover { 
+    background-color: #1a6fcc; 
+}
+
+/* =========================================
+   4. OCENE FILMA (.rating)
+   ========================================= */
+.rating {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block; 
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+/* Boje za ocene (koristi JS) */
+.rating.red {
+    background-color: #d94545; /* Crvena (ispod 5) */
+    color: white;
+}
+.rating.orange {
+    background-color: #ff9800; /* Narandžasta (5 do 7.9) */
+    color: white;
+}
+.rating.green {
+    background-color: #4caf50; /* Zelena (8 i više) */
+    color: white;
+}
+
+
+/* =========================================
+   5. HAMBURGER MENI
+   ========================================= */
+
+.hamburger-menu {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #444;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1011; 
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+    /* Tranzicija za sakrivanje */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Sakrij dugme kada je meni otvoren (koristi JS klasu) */
+body.menu-is-open .hamburger-menu {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50%); 
+    pointer-events: none;  
+}
+
+/* Meni koji izlazi */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background-color: #1a1a1a;
+    border-right: 1px solid #333;
+    z-index: 1010; 
+    padding: 60px 20px 20px 20px;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 5px 0px 15px rgba(0,0,0,0.5);
+}
+.mobile-nav.is-open {
+    transform: translateX(0);
+}
+
+.mobile-nav h3 {
+    color: #0b4e8e;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.mobile-nav ul { list-style: none; padding: 0; margin: 0; }
+.mobile-nav li a {
+    display: block;
+    padding: 12px 15px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+}
+.mobile-nav li a:hover {
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+/* Dugme za zatvaranje menija */
+.close-menu-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1011; 
+}
+
+/* Maska preko sadržaja */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1009; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0.4s;
+}
+.menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}

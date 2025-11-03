@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmski Projekat - Glavna Strana</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="mobile-nav" id="mobile-nav-menu">
+        <button class="close-menu-btn" id="close-menu">×</button>
+        <h3>Žanrovi</h3>
+        <ul>
+            <li><a href="index.html" class="genre-link" data-genre="all">Svi Filmovi</a></li>
+            <li><a href="index.html?genre=sci-fi" class="genre-link" data-genre="sci-fi">Naučna Fantastika</a></li>
+            <li><a href="index.html?genre=drama" class="genre-link" data-genre="drama">Drama</a></li>
+            <li><a href="index.html?genre=thriller" class="genre-link" data-genre="thriller">Triler</a></li>
+            <li><a href="index.html?genre=action" class="genre-link" data-genre="action">Akcija</a></li>
+            <li><a href="index.html?genre=comedy" class="genre-link" data-genre="comedy">Komedija</a></li>
+            <li><a href="index.html?genre=biografy" class="genre-link" data-genre="biografy">Biografski</a></li>
+        </ul>
+    </nav>
+    
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <div class="search-container">
+        <button class="hamburger-menu" id="open-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <a href="index.html" style="display: block; text-decoration: none;">
+            <img src="Logo/logo beli.png" alt="Logo Filmskog Sajta" style="height: 50px; margin: 10px auto; display: block;"></a>
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </div>
+
+    <div class="movie-grid">
+
+        <div class="movie-card" data-genre="biografy drama" data-rate="8.3">
+            <img src="Posteri/Oppenheimer.webp" alt="Oppenheimer">
+            
+            <div class="movie-overlay">
+                <div class="rating">⭐️ <span class="rate-value">8.3</span></div> 
+                
+                <p class="description">
+                    A dramatization of the life story of 
+                J. Robert Oppenheimer, the physicist who had a large hand in the
+                 development of the atomic bombs that brought an end to World War II.
+                </p>
+                <a href="Oppenheimer.html" class="play-button">Gledaj film</a> 
+            </div>
+        </div>
+
+        <div class="movie-card" data-genre="thriller drama action" data-rate="9.3">
+            <img src="Posteri/The Shawshank Redemption.webp" alt="The Shawshank Redemption">
+            <div class="movie-overlay">
+                <div class="rating">⭐️ <span class="rate-value">9.3</span></div>
+                
+                <p class="description">
+                    A banker convicted of uxoricide forms a 
+                friendship over a quarter century with a hardened convict, while 
+                maintaining his innocence and trying to remain hopeful through 
+                simple compassion.
+                </p>
+                 <a href="The Shawshank Redemption.html" class="play-button">Gledaj film</a>
+            </div>
+
+        </div>
+                <div class="movie-card" data-genre="thriller drama" data-rate="9.2">
+            <img src="Posteri/The Godfather.jpg" alt="The Godfather">
+            <div class="movie-overlay">
+                <div class="rating">⭐️ <span class="rate-value">9.2</span></div>
+                
+                <p class="description">
+                    The aging patriarch of an organized crime dynasty transfers 
+                    control of his clandestine empire to his reluctant son.
+                </p>
+                 <a href="The Godfather.html" class="play-button">Gledaj film</a>
+            </div>
+        </div>
+        
+    </div> 
+
+    <script src="script.js"></script>
+</body>
+</html>
